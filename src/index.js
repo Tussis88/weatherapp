@@ -1,4 +1,4 @@
 import "./styles.css";
-import { prova } from "./prova";
+import { getWeather } from "./weatherapi";
 
-prova();
+getWeather().catch((error) => console.log(error));
