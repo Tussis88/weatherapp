@@ -1,7 +1,10 @@
-async function getWeather() {
-  const coordinates = await geoLocator();
-  const url =
-    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${coordinates.latitude},${coordinates.longitude}/today/tomorrow?`;
+async function getWeather(city) {
+  if (!city) {
+    const coordinates = await geoLocator();
+    console.log(coordinates);
+    city = `${coordinates.latitude},${coordinates.longitude}`;
+  }
+  const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/today/tomorrow?`;
   const params = new URLSearchParams({
     unitGroup: "metric",
     include: "current",
@@ -19,24 +22,19 @@ async function getWeather() {
   };
 }
 
-async function geoLocator() {
-  let lat;
-  let long;
-  if ("geolocation" in navigator) {
+function geoLocator() {
+  return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition((position) => {
       // console.log(position);
-      lat = position.coords.latitude.toFixed(4);
-      long = position.coords.longitude.toFixed(4);
-      console.log({ lat });
-      console.log({ long });
-      return {
+      const lat = position.coords.latitude.toFixed(4);
+      const long = position.coords.longitude.toFixed(4);
+      console.log({ lat, long });
+      resolve({
         latitude: lat,
         longitude: long,
-      };
-    });
-  } else {
-    console.log("no position");
-  }
+      });
+    }),
+      (error) => reject(console.log(error));
+  });
 }
-
 export { getWeather };
