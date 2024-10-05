@@ -1,6 +1,5 @@
 import "./styles.css";
-import { getWeather } from "./weatherapi";
+import { domLogic } from "./dom";
 
-getWeather()
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+
+domLogic.updateScreenData();

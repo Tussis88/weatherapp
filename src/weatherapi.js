@@ -14,10 +14,10 @@ async function getWeather(city) {
 
   const response = await fetch(url + params, { mode: "cors" });
   const data = await response.json();
-  console.log(data);
+  // console.log({ data });
   return {
     location: data.address,
-    today: data.days[0],
+    today: data.currentConditions,
     tomorrow: data.days[1],
   };
 }
@@ -37,4 +37,5 @@ function geoLocator() {
       (error) => reject(console.log(error));
   });
 }
+
 export { getWeather };
