@@ -12,14 +12,19 @@ async function getWeather(city) {
     contentType: "json",
   });
 
-  const response = await fetch(url + params, { mode: "cors" });
-  const data = await response.json();
+  try {
+    const response = await fetch(url + params, { mode: "cors" });
+    const data = await response.json();
+    return {
+      location: data.address,
+      today: data.currentConditions,
+      tomorrow: data.days[1],
+    };
+  } catch (error) {
+    alert(error);
+    return null;
+  }
   // console.log({ data });
-  return {
-    location: data.address,
-    today: data.currentConditions,
-    tomorrow: data.days[1],
-  };
 }
 
 function geoLocator() {

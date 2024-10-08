@@ -1,6 +1,7 @@
 import { getWeather } from "./weatherapi";
 
-const domLogic = (function() {
+const domLogic = (function () {
+  const titleDiv = document.querySelector(".title");
   const searchForm = document.querySelector(".search");
   const container = document.querySelector(".container");
 
@@ -22,6 +23,13 @@ const domLogic = (function() {
   };
 
   const updateScreenData = (cityName = null) => {
+    if (cityName) {
+      cityName = cityName.trim();
+      cityName = cityName[0].toUpperCase() + cityName.slice(1).toLowerCase();
+      titleDiv.textContent = "The weather in " + cityName;
+    } else {
+      titleDiv.textContent = "The weather in your location";
+    }
     getWeather(cityName)
       .then((data) => {
         console.log(data);
