@@ -1,4 +1,4 @@
-import { getWeather } from "./weatherapi";
+import { getWeather, getIconLink } from "./weatherapi";
 
 const domLogic = (function () {
   const titleDiv = document.querySelector(".title");
@@ -18,6 +18,10 @@ const domLogic = (function () {
     conditions.classList.add("conditions");
     conditions.textContent = data.conditions;
     card.appendChild(conditions);
+
+    const icon = document.createElement("img");
+    icon.src = getIconLink(data.icon);
+    card.appendChild(icon);
 
     return card;
   };
