@@ -45,40 +45,21 @@ function geoLocator() {
 
 function getIconLink(icon) {
   // https://openweathermap.org/weather-conditions
-  let conditionLink = "";
-  switch (icon) {
-    case "snow":
-      conditionLink = "13d";
-      break;
-    case "rain":
-      conditionLink = "09d";
-      break;
-    case "fog":
-      conditionLink = "50d";
-      break;
-    case "wind":
-      conditionLink = "03d";
-      break;
-    case "cloudy":
-      conditionLink = "04d";
-      break;
-    case "partly-cloudy-day":
-      conditionLink = "02d";
-      break;
-    case "partly-cloudy-night":
-      conditionLink = "02n";
-      break;
-    case "clear-day":
-      conditionLink = "01d";
-      break;
-    case "clear-night":
-      conditionLink = "01n";
-      break;
-    default:
-      console.log("no match found");
-      return
-  }
-  return `https://openweathermap.org/img/wn/${conditionLink}@4x.png`;
+   const weatherCode = {
+    "snow": "13d",
+    "rain": "09d",
+    "fog": "50d",
+    "wind": "03d",
+    "cloudy": "04d",
+    "partly-cloudy-night": "02n",
+    "partly-cloudy-day": "02d",
+    "clear-night": "01n",
+    "clear-day": "01d",
+  };
+
+  return weatherCode[icon]
+    ? `https://openweathermap.org/img/wn/${weatherCode[icon]}@4x.png`
+    : null;
 }
 
 export { getWeather, getIconLink };
