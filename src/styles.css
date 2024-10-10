@@ -1,3 +1,94 @@
+@font-face {
+  font-family: "Inconsolata";
+  src: url("./Inconsolata.ttf");
+}
+:root {
+  --background: #faf4ed;
+  --altbackground: #f2e9e1;
+  --text: #575279;
+  --blue: #286983;
+  --red: #b4637a;
+  --gold: #ea9d34;
+  --violet: #907aa9;
+  --shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 body {
-  background-color: plum;
+  background-color: var(--background);
+  color: var(--text);
+  font-family: "Inconsolata", monospace;
+  font-size: 1.5em;
+}
+
+.header {
+  background-color: var(--altbackground);
+  box-shadow: var(--shadow);
+  padding: 30px;
+  margin-bottom: 100px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  padding: 50px;
+}
+
+.card {
+  border: solid 5px var(--violet);
+  border-radius: 40px;
+  background-color: var(--altbackground);
+  height: 15em;
+  width: 10em;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: var(--shadow);
+}
+
+.icon {
+  position: absolute;
+  right: 2em;
+  bottom: -30px;
+}
+
+.name {
+  color: var(--violet);
+  position: absolute;
+  top: -2.1em;
+  left: 1ch;
+}
+
+input {
+  background-color: var(--background);
+  border: none;
+  border-radius: 20px;
+  height: 2em;
+  width: 200px;
+  padding-left: 15px;
+  font-family: "Inconsolata", monospace;
+  color: var(--text);
+  font-size: 0.8em;
+}
+
+input:focus {
+  outline: 2px solid var(--violet);
+  box-shadow: var(--shadow);
+}
+
+button {
+  height: 2em;
+  padding: 0px 15px;
+  border: solid 2px var(--violet);
+  border-radius: 20px;
+  background-color: var(--violet);
+  font-family: "Inconsolata", monospace;
+  font-size: 0.8em;
+  color: var(--background);
+}
+
+button:hover {
+  box-shadow: var(--shadow);
+  background-color: var(--altbackground);
+  color: var(--violet);
 }

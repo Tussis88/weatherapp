@@ -5,21 +5,37 @@ const domLogic = (function () {
   const searchForm = document.querySelector(".search");
   const container = document.querySelector(".container");
 
-  const createCard = (data) => {
+  const createCard = (data, cardName) => {
     const card = document.createElement("div");
     card.classList.add("card");
 
-    const temperature = document.createElement("div");
+    const name = document.createElement("h2");
+    name.classList.add("name");
+    name.textContent = cardName;
+    card.appendChild(name);
+
+    const temperature = document.createElement("p");
     temperature.classList.add("temperature");
-    temperature.textContent = data.temp;
+    temperature.textContent = `temperature: ${data.temp}°`;
     card.appendChild(temperature);
 
-    const conditions = document.createElement("div");
+    const feelsLike = document.createElement("p");
+    feelsLike.classList.add("feel");
+    feelsLike.textContent = `feels like: ${data.feelslike}°`;
+    card.appendChild(feelsLike);
+
+    const conditions = document.createElement("p");
     conditions.classList.add("conditions");
     conditions.textContent = data.conditions;
     card.appendChild(conditions);
 
+    const humidity = document.createElement("p");
+    humidity.classList.add("humidity");
+    humidity.textContent = `humidity: ${data.humidity}%`;
+    card.appendChild(humidity);
+
     const icon = document.createElement("img");
+    icon.classList.add("icon");
     icon.src = getIconLink(data.icon);
     card.appendChild(icon);
 
@@ -37,8 +53,8 @@ const domLogic = (function () {
     getWeather(cityName)
       .then((data) => {
         console.log(data);
-        container.appendChild(createCard(data.today));
-        container.appendChild(createCard(data.tomorrow));
+        container.appendChild(createCard(data.today, "Now"));
+        container.appendChild(createCard(data.tomorrow, "Tomorrow"));
       })
       .catch((error) => console.log(error));
   };
